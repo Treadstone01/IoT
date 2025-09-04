@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pandas
+requests
+scikit-learn
+statsmodels
+pydantic
+pmdarima
