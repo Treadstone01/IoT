@@ -50,7 +50,7 @@ def preprocess_data(feeds):
     df['energy_consumption'] = pd.to_numeric(df['energy_consumption'], errors='coerce')
     df = df.set_index('timestamp')
 
-    # Resample to hourly frequency, aggregate, and fill missing values
+    # Resample to hourly frequency and aggregate by summing the energy consumption
     hourly_data = df.resample('h').sum()
     hourly_data.interpolate(method='linear', inplace=True)
     hourly_data.dropna(inplace=True)
@@ -87,7 +87,7 @@ def predict_energy():
             raise HTTPException(status_code=500, detail={"status": "error", "predicted_energy_kWh": 0.0, "co2_consumption_kg": 0.0, "message": "Not enough data for prediction. Need at least 24 hours of data."})
             
         # Make a single-step forecast
-        forecast = model.predict(n_periods=1, X=df.values)
+        forecast = model.predict(n_periods=1)
 
         # Ensure the prediction is not negative
         predicted_value = max(0, forecast.iloc[0] if isinstance(forecast, pd.Series) else forecast[0])
