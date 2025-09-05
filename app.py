@@ -41,7 +41,7 @@ def preprocess_data(feeds):
 model = None
 try:
     # Look for the model file in the 'models' directory
-    model_path = os.path.join('models', 'arima_model.joblib')
+    model_path = 'arima_model.joblib'
     model = joblib.load(model_path)
     print("ARIMA model loaded successfully.")
 except Exception as e:
@@ -76,3 +76,4 @@ def predict_energy():
     except Exception as e:
         print(f"Prediction failed: {e}")
         raise HTTPException(status_code=500, detail={"status": "error", "predicted_energy_kWh": 0, "message": "An error occurred during prediction."})
+
