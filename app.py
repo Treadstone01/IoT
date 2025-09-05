@@ -16,7 +16,7 @@ app = FastAPI(
 # Load the trained model
 try:
     # Use joblib to load the model
-    model = joblib.load('./models/arima_model.joblib')
+    model = joblib.load('./arima_model.joblib')
 except FileNotFoundError:
     print("Error: The model file was not found. Please run the training script first.")
     model = None
@@ -126,3 +126,4 @@ def predict():
         )
     except Exception as e:
         return {"status": "error", "predicted_energy_kWh": None, "detail": str(e)}
+
