@@ -5,6 +5,7 @@ import requests
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import warnings
+from fastapi.middleware.cors import CORSMiddleware
 
 # Suppress all warnings for cleaner output
 warnings.filterwarnings("ignore")
@@ -17,6 +18,16 @@ class PredictionResponse(BaseModel):
 
 # Initialize FastAPI app
 app = FastAPI()
+
+# Add CORS middleware to allow all origins
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def fetch_data():
     """Fetches energy consumption data from ThingSpeak."""
