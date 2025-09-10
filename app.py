@@ -37,8 +37,8 @@ app.add_middleware(
 # Load inference pipeline
 try:
     pipeline = EnergyInferencePipeline(
-        model_path=os.path.join(os.getcwd(), "minute_lstm_model.h5"),
-        scaler_features_path=os.path.join(os.getcwd(), "scaler_features.joblib"),
+        model_path=os.path.join(os.getcwd(),'models/minute_feed_model.keras'),
+        scaler_features_path=os.path.join(os.getcwd(), "models/minute_level_scaler_features.joblib"),
         n_steps=60
     )
     print("EnergyInferencePipeline loaded successfully.")
