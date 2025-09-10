@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import warnings
 
-from energy_inference_pipeline import EnergyInferencePipeline
+from inference import EnergyInferencePipeline
 
 # Suppress warnings
 warnings.filterwarnings("ignore")
